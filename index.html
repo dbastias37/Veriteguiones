@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Verité – Visualizador de Guiones</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script>
+    // TODO: Reemplaza con tu configuración de Firebase
+    var firebaseConfig = {
+      apiKey: "TU_API_KEY",
+      authDomain: "TU_PROYECTO.firebaseapp.com",
+      projectId: "TU_PROYECTO",
+      storageBucket: "TU_PROYECTO.appspot.com",
+      messagingSenderId: "TU_SENDER_ID",
+      appId: "TU_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const docRef = db.doc('scripts/main');
+  </script>
+</head>
+<body>
+  <main class="container">
+    <!-- FORMULARIO DE SUBIDA -->
+    <section id="form-section">
+      <h1>Sube tu guion</h1>
+      <form id="upload-form">
+        <label>
+          Nombre del cliente*
+          <input type="text" id="cliente" required>
+        </label>
+        <label>
+          Fecha*
+          <input type="date" id="fecha" required>
+        </label>
+        <label>
+          Lugar*
+          <input type="text" id="lugar" required>
+        </label>
+        <label>
+          Tipo de grabación*
+          <input type="text" id="tipo" required>
+        </label>
+        <label>
+          Comentarios del director*
+          <textarea id="comentarios" rows="3" required></textarea>
+        </label>
+        <label>
+          Archivo .txt*
+          <input type="file" id="file-input" accept=".txt" required>
+        </label>
+        <button type="submit">Subir y mostrar</button>
+      </form>
+    </section>
+
+    <!-- VISUALIZACIÓN DEL GUION -->
+    <section id="display-section" class="hidden">
+      <header>
+        <h2 id="hdr-cliente"></h2>
+        <p><span id="hdr-fecha"></span> · <span id="hdr-lugar"></span> · <span id="hdr-tipo"></span></p>
+        <p><em id="hdr-comentarios"></em></p>
+      </header>
+      <article id="script-content"></article>
+      <button id="unlock-btn">Volver atrás (requiere contraseña)</button>
+    </section>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>
