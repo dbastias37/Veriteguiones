@@ -1,5 +1,5 @@
 // Configuración
-const pwd = 'TuPassword123'; // Cambiar en producción
+const pwd = 'verite2025'; // Cambiar en producción
 
 // Referencias DOM
 const formSection    = document.getElementById('form-section');
