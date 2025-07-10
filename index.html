@@ -10,14 +10,15 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script>
     // TODO: Reemplaza con tu configuración de Firebase
-    var firebaseConfig = {
-      apiKey: "TU_API_KEY",
-      authDomain: "TU_PROYECTO.firebaseapp.com",
-      projectId: "TU_PROYECTO",
-      storageBucket: "TU_PROYECTO.appspot.com",
-      messagingSenderId: "TU_SENDER_ID",
-      appId: "TU_APP_ID"
-    };
+    const firebaseConfig = {
+  apiKey: "AIzaSyDZ_G3E6zFEQ5DQ1lL_s47OJVrmHH0AjpQ",
+  authDomain: "visualizer-guiones-verite.firebaseapp.com",
+  projectId: "visualizer-guiones-verite",
+  storageBucket: "visualizer-guiones-verite.firebasestorage.app",
+  messagingSenderId: "963386104307",
+  appId: "1:963386104307:web:7974b424631bdaa4615a86",
+  measurementId: "G-VXJMB18BXZ"
+};
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
     const docRef = db.doc('scripts/main');
