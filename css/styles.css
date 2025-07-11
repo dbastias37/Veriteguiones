@@ -78,3 +78,18 @@ button {
 .nav-buttons button {
   margin-right: 0.5rem;
 }
+#client-comments {
+  margin-top: 2rem;
+}
+
+#client-comments h3 {
+  margin-bottom: 0.75rem;
+  color: var(--color-accent);
+}
+
+.comment-box {
+  background: #f7f7f8;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
