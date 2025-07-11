@@ -1,5 +1,6 @@
 // Configuración
 const pwd = 'verite2025'; // Cambiar en producción
+const commentPwd = "comentarios2025";
 
 // Navegación entre guiones
 const prevBtn = document.getElementById('prev-btn');
@@ -38,6 +39,10 @@ const hdrTipo        = document.getElementById('hdr-tipo');
 const hdrComments    = document.getElementById('hdr-comentarios');
 const scriptContent  = document.getElementById('script-content');
 
+const commentsContainer = document.getElementById("comments-container");
+const commentForm = document.getElementById("comment-form");
+const commentKey = document.getElementById("comment-key");
+const commentText = document.getElementById("comment-text");
 // Al cargar, trato de obtener datos de Firestore
 docRef.get().then(doc => {
   if (doc.exists) {
@@ -88,3 +93,19 @@ unlockBtn.addEventListener('click', () => {
     alert('Contraseña incorrecta.');
   }
 });
+
+// Comentarios del cliente
+if (commentForm) {
+  commentForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (commentKey.value === commentPwd) {
+      const div = document.createElement('div');
+      div.className = 'comment-box';
+      div.textContent = commentText.value;
+      commentsContainer.appendChild(div);
+      commentText.value = '';
+    } else {
+      alert('Clave incorrecta.');
+    }
+  });
+}
