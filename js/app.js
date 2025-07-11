@@ -1,6 +1,31 @@
 // Configuración
 const pwd = 'verite2025'; // Cambiar en producción
 
+// Navegación entre guiones
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
+function navigateTo(page) {
+  const attempt = prompt('Ingresa la contraseña para cambiar de guion:');
+  if (attempt === pwd) {
+    window.location.href = page;
+  } else {
+    alert('Contraseña incorrecta.');
+  }
+}
+
+if (prevBtn && typeof prevPage !== 'undefined' && prevPage) {
+  prevBtn.addEventListener('click', () => navigateTo(prevPage));
+} else if (prevBtn) {
+  prevBtn.style.display = 'none';
+}
+
+if (nextBtn && typeof nextPage !== 'undefined' && nextPage) {
+  nextBtn.addEventListener('click', () => navigateTo(nextPage));
+} else if (nextBtn) {
+  nextBtn.style.display = 'none';
+}
+
 // Referencias DOM
 const formSection    = document.getElementById('form-section');
 const displaySection = document.getElementById('display-section');

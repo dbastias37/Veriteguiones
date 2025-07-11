@@ -70,3 +70,11 @@ button {
 .bold-script {
   font-weight: 700;
 }
+
+.nav-buttons {
+  margin-top: 1rem;
+}
+
+.nav-buttons button {
+  margin-right: 0.5rem;
+}
