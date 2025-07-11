@@ -93,3 +93,10 @@ button {
   border-radius: 8px;
   margin-bottom: 1rem;
 }
+
+.delete-btn {
+  display: block;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
