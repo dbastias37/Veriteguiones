@@ -43,6 +43,12 @@ const commentsContainer = document.getElementById("comments-container");
 const commentForm = document.getElementById("comment-form");
 const commentKey = document.getElementById("comment-key");
 const commentText = document.getElementById("comment-text");
+let commentsCollection;
+// Inicializo referencia a subcolección de comentarios si existe docRef
+if (typeof docRef !== 'undefined') {
+  commentsCollection = docRef.collection('comments');
+}
+
 // Al cargar, trato de obtener datos de Firestore
 docRef.get().then(doc => {
   if (doc.exists) {
@@ -95,14 +101,45 @@ unlockBtn.addEventListener('click', () => {
 });
 
 // Comentarios del cliente
+function renderComment(id, data) {
+  const div = document.createElement('div');
+  div.className = 'comment-box';
+  const p = document.createElement('p');
+  p.textContent = data.text;
+  div.appendChild(p);
+
+  const delBtn = document.createElement('button');
+  delBtn.textContent = 'Eliminar';
+  delBtn.className = 'delete-btn';
+  delBtn.addEventListener('click', () => {
+    const attempt = prompt('Ingresa la contraseña para borrar el comentario:');
+    if (attempt === commentPwd) {
+      commentsCollection.doc(id).delete();
+    } else {
+      alert('Clave incorrecta.');
+    }
+  });
+  div.appendChild(delBtn);
+
+  commentsContainer.appendChild(div);
+}
+
 if (commentForm) {
+  // Cargar comentarios existentes
+  if (commentsCollection) {
+    commentsCollection.orderBy('timestamp').onSnapshot(snap => {
+      commentsContainer.innerHTML = '';
+      snap.forEach(doc => renderComment(doc.id, doc.data()));
+    });
+  }
+
   commentForm.addEventListener('submit', e => {
     e.preventDefault();
     if (commentKey.value === commentPwd) {
-      const div = document.createElement('div');
-      div.className = 'comment-box';
-      div.textContent = commentText.value;
-      commentsContainer.appendChild(div);
+      commentsCollection.add({
+        text: commentText.value,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      }).catch(err => alert('Error al guardar: ' + err));
       commentText.value = '';
     } else {
       alert('Clave incorrecta.');
